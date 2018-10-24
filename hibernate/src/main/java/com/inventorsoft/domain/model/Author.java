@@ -22,27 +22,27 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @ToString(of = "id")
-@Table(name = "AUTHORS")
+@Table(name = "authors")
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Author {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID", unique = true, nullable = false)
+    @Column(unique = true, nullable = false)
     Integer id;
 
-    @Column(name = "FIRSTNAME", nullable = false)
+    @Column(nullable = false)
     String firstName;
 
-    @Column(name = "LASTNAME", nullable = false)
+    @Column(nullable = false)
     String lastName;
 
-    @Column(name = "BIRTHDAY", nullable = false)
+    @Column(nullable = false)
     LocalDate birthday;
 
     @Enumerated
     /*@Convert(converter = NationalityConverter.class)*/
-    @Column(name = "NATIONALITY", nullable = false)
+    @Column(nullable = false)
     Nationality nationality;
 
 }

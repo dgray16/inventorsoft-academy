@@ -10,7 +10,8 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public enum Nationality {
 
-    UKRAINIAN("Ukrainian");
+    UKRAINIAN("Ukrainian"),
+    HUNGARIAN("Hungarian");
 
     String name;
 

@@ -20,13 +20,13 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @ToString(of = "id")
-@Table(name = "BORROWINGS")
+@Table(name = "borrowings")
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Borrowing {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID", unique = true, nullable = false)
+    @Column(unique = true, nullable = false)
     Integer id;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -36,10 +36,10 @@ public class Borrowing {
     @ManyToOne
     Member member;
 
-    @Column(name = "BORROWDATE", nullable = false)
+    @Column(nullable = false)
     LocalDate borrowDate;
 
-    @Column(name = "RETURNDATE", nullable = false)
+    @Column(nullable = false)
     LocalDate returnDate;
 
 }

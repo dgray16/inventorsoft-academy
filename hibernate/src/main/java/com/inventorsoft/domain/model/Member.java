@@ -17,19 +17,19 @@ import javax.persistence.Table;
 @Setter
 @ToString(of = "id")
 @Entity
-@Table(name = "MEMBERS")
+@Table(name = "members")
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Member {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID", unique = true, nullable = false)
+    @Column(unique = true, nullable = false)
     Integer id;
 
-    @Column(name = "FIRSTNAME", nullable = false)
+    @Column(nullable = false)
     String firstName;
 
-    @Column(name = "LASTNAME", nullable = false)
+    @Column(nullable = false)
     String lastName;
 
 }

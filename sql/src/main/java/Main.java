@@ -93,24 +93,33 @@ class Main {
             try {
                 Integer rowsAffected = statement.executeUpdate("UPDATE BOOKS SET BOOKS.STOCK = 500 WHERE BOOKS.ID = 2 OR BOOKS.ID = 1");
 
-                //throw new SQLException("Commit shall not pass!");
-                connection.commit();
-
                 try (ResultSet resultSet = statement.executeQuery("SELECT * FROM BOOKS")) {
                     printInfo(resultSet);
                 }
 
+                /* Rollback */
+                /*if (true) {
+                    throw new SQLException("Commit shall not pass!");
+                }*/
+
+                /* Commit */
+                connection.commit();
+
             } catch (SQLException e) {
                 e.printStackTrace();
                 connection.rollback();
+            } finally {
+                try (ResultSet resultSet = statement.executeQuery("SELECT * FROM BOOKS")) {
+                    printInfo(resultSet);
+                }
             }
         }
     }
 
     @SneakyThrows
     private static String getSqlCode(@NonNull String filename) {
-        URL sqlResouce = Main.class.getClassLoader().getResource(filename);
-        File file = new File(sqlResouce.getPath());
+        URL sqlResource = Main.class.getClassLoader().getResource(filename);
+        File file = new File(sqlResource.getPath());
         return new String(Files.readAllBytes(Paths.get(file.getPath())));
     }
 
@@ -119,7 +128,7 @@ class Main {
         if (BooleanUtils.isFalse(resultSet.isBeforeFirst())) {
             System.out.println("Query returned no rows");
         } else {
-            Integer columnsCount = resultSet.getMetaData().getColumnCount();
+            int columnsCount = resultSet.getMetaData().getColumnCount();
             while (resultSet.next()) {
                 for (int i = INTEGER_ONE; i <= columnsCount; i++) {
                     System.out.println(String.format(

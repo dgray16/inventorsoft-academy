@@ -3,9 +3,9 @@ package com.inventorsoft.domain.service;
 import com.inventorsoft.domain.dictionary.Nationality;
 import com.inventorsoft.domain.model.Author;
 import com.inventorsoft.domain.repository.AuthorRepository;
+import com.inventorsoft.domain.service.base.GeneralService;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
-import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -31,10 +31,12 @@ public class AuthorService extends GeneralService<Author, Integer> {
     @Transactional
     public Author createTestAuthor() {
         Author author = new Author();
+
         author.setBirthday(LocalDate.ofYearDay(1995, 29));
         author.setFirstName("Vova");
         author.setLastName("Perebykivskyi");
         author.setNationality(Nationality.UKRAINIAN);
+
         return authorRepository.save(author);
     }
 

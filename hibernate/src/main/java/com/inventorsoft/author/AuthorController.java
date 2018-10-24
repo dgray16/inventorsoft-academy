@@ -9,43 +9,37 @@ import com.inventorsoft.domain.service.BookService;
 import com.inventorsoft.domain.service.BorrowingService;
 import com.inventorsoft.domain.service.MemberService;
 import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
 @RestController
+@AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class AuthorController {
 
-    @Autowired
     AuthorService authorService;
-
-    @Autowired
     BookService bookService;
-
-    @Autowired
     MemberService memberService;
-
-    @Autowired
     BorrowingService borrowingService;
 
-    @ResponseBody
-    @RequestMapping(value = "/authors", method = RequestMethod.GET)
-    public List<Author> authors() {
+    @GetMapping(value = "/authors")
+    public ResponseEntity<List<Author>> authors() {
         Author author = authorService.createTestAuthor();
-        Book book = bookService.createTestBook(author.getId());
+        Book book = bookService.createTestBook(author);
         Member member = memberService.createTestMember();
         Borrowing borrowing = borrowingService.createTestBorrowing(book, member);
 
         List<Book> booksByAuthor = bookService.getBooksByAuthor(author);
+
+        /* With this collection of Books I can demonstrate LazyInitializationException */
         List<Book> booksOfYoungAuthors = bookService.getBooksOfYoungWriters();
 
-        return authorService.getAll();
+        return ResponseEntity.ok(authorService.getAll());
     }
 
 }

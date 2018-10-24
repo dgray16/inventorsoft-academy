@@ -3,19 +3,18 @@ package com.inventorsoft.domain.converter;
 import com.inventorsoft.domain.dictionary.Nationality;
 import javax.persistence.AttributeConverter;
 import java.util.Arrays;
-
-import static java.util.Objects.isNull;
+import java.util.Objects;
 
 public class NationalityConverter implements AttributeConverter<Nationality, String> {
 
     @Override
     public String convertToDatabaseColumn(Nationality attribute) {
-        return isNull(attribute) ? null : attribute.getName();
+        return Objects.isNull(attribute) ? null : attribute.getName();
     }
 
     @Override
     public Nationality convertToEntityAttribute(String dbData) {
-        return isNull(dbData) 
+        return Objects.isNull(dbData)
                 ? null
                 : Arrays.stream(Nationality.values())
                     .filter(enumValue -> enumValue.getName().equals(dbData))

@@ -2,6 +2,7 @@ package com.inventorsoft.domain.service;
 
 import com.inventorsoft.domain.model.Member;
 import com.inventorsoft.domain.repository.MemberRepository;
+import com.inventorsoft.domain.service.base.GeneralService;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Service;
@@ -21,8 +22,10 @@ public class MemberService extends GeneralService<Member, Integer> {
     @Transactional
     public Member createTestMember() {
         Member member = new Member();
+
         member.setFirstName("Svyatoslav");
         member.setLastName("Vakarchuk");
+
         return memberRepository.save(member);
     }
 }
