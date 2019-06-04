@@ -1,7 +1,5 @@
-import lombok.AccessLevel;
 import lombok.NonNull;
 import lombok.SneakyThrows;
-import lombok.experimental.FieldDefaults;
 import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 
@@ -27,14 +25,12 @@ import static org.apache.commons.lang3.math.NumberUtils.INTEGER_ONE;
  *     <li> https://docs.google.com/presentation/d/1ON5K22OOD5EKYvOSy6hRH-jC0JfbivVASpSQ6NeptnI </li>
  * </ul>
  */
-
-@FieldDefaults(level = AccessLevel.PRIVATE)
 class Main {
 
-    static final String DB_URL = "jdbc:hsqldb:mem:training";
-    static final String USER = "SA";
-    static final String PREPARED_SQL = "SELECT BOOKS.TITLE FROM BOOKS WHERE BOOKS.ID = ?";
-    static final String PRINT_INFO = "%s : %s";
+    private static final String DB_URL = "jdbc:hsqldb:mem:training";
+    private static final String USER = "SA";
+    private static final String PREPARED_SQL = "SELECT BOOKS.TITLE FROM BOOKS WHERE BOOKS.ID = ?";
+    private static final String PRINT_INFO = "%s : %s";
 
     @SneakyThrows
     public static void main(String[] args) {

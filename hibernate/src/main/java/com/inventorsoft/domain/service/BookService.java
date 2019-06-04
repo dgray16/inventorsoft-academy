@@ -6,7 +6,6 @@ import com.inventorsoft.domain.repository.BookRepository;
 import com.inventorsoft.domain.service.base.GeneralService;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
-import org.apache.commons.lang3.math.NumberUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,7 +13,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Service
-@FieldDefaults(level = AccessLevel.PRIVATE)
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class BookService extends GeneralService<Book, Integer> {
 
     BookRepository bookRepository;

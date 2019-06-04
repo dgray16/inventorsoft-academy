@@ -7,8 +7,7 @@ import org.springframework.data.repository.CrudRepository;
 import javax.persistence.EntityNotFoundException;
 import java.util.Optional;
 
-
-@FieldDefaults(level = AccessLevel.PRIVATE)
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class GeneralService<T, ID extends Integer> {
 
     CrudRepository<T, ID> repository;

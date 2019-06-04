@@ -13,7 +13,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Service
-@FieldDefaults(level = AccessLevel.PRIVATE)
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class AuthorService extends GeneralService<Author, Integer> {
 
     AuthorRepository authorRepository;

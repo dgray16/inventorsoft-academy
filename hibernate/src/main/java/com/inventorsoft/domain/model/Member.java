@@ -15,8 +15,8 @@ import javax.persistence.Table;
 
 @Getter
 @Setter
-@ToString(of = "id")
 @Entity
+@ToString(of = "id")
 @Table(name = "members")
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Member {
