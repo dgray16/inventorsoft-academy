@@ -29,11 +29,10 @@ public class Borrowing {
     @Column(unique = true, nullable = false)
     Integer id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    /*@ManyToOne*/
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     Book book;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     Member member;
 
     @Column(nullable = false)
