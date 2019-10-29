@@ -28,4 +28,5 @@ public class MemberService extends GeneralService<Member, Integer> {
 
         return memberRepository.save(member);
     }
+
 }

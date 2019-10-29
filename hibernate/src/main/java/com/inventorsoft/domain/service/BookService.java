@@ -57,4 +57,5 @@ public class BookService extends GeneralService<Book, Integer> {
         /* Manual Query example */
         return bookRepository.getBooksOfYoungWriters(LocalDate.ofYearDay(1990, 1));
     }
+
 }
