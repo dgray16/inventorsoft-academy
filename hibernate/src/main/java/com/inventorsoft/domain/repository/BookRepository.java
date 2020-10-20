@@ -16,9 +16,11 @@ public interface BookRepository extends JpaRepository<Book, Integer> {
     List<Book> getAllByAuthor(Author author);
 
     /* Manual query with parameter */
-    @Query("select b from Book b " +
-            "inner join b.author a " +
-            "where a.birthday > :date ")
+    @Query(value = """
+        select b from Book b
+            inner join b.author a
+        where a.birthday > :date
+    """)
     List<Book> getBooksOfYoungWriters(@Param("date") LocalDate date);
 
     /* Pure Spring Data JPA */

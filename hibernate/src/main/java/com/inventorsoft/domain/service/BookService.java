@@ -6,6 +6,7 @@ import com.inventorsoft.domain.repository.BookRepository;
 import com.inventorsoft.domain.service.base.GeneralService;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
+import org.apache.commons.lang3.math.NumberUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -40,7 +41,7 @@ public class BookService extends GeneralService<Book, Integer> {
         List<Book> allByAuthor = bookRepository.getAllByAuthor(author);
 
         /* Right here I can show additional query when call Author */
-        System.out.println("");
+        System.out.println();
 
         return allByAuthor;
     }
@@ -55,7 +56,7 @@ public class BookService extends GeneralService<Book, Integer> {
         /*return bookRepository.getAllByAuthorBirthdayAfter(LocalDate.ofYearDay(1990, NumberUtils.INTEGER_ONE));*/
 
         /* Manual Query example */
-        return bookRepository.getBooksOfYoungWriters(LocalDate.ofYearDay(1990, 1));
+        return bookRepository.getBooksOfYoungWriters(LocalDate.ofYearDay(1990, NumberUtils.INTEGER_ONE));
     }
 
 }

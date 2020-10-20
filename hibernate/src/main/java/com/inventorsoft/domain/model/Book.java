@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import lombok.experimental.FieldDefaults;
+import org.apache.commons.lang3.math.NumberUtils;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,8 +19,8 @@ import java.time.LocalDate;
 
 @Getter
 @Setter
-@ToString(of = "id")
 @Entity
+@ToString(of = "id")
 @Table(name = "books")
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Book {
@@ -39,6 +40,6 @@ public class Book {
     LocalDate published;
 
     @Column(nullable = false)
-    Integer stock = 0;
+    Integer stock = NumberUtils.INTEGER_ZERO;
 
 }

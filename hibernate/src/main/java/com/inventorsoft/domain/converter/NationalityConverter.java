@@ -4,12 +4,16 @@ import com.inventorsoft.domain.dictionary.Nationality;
 import javax.persistence.AttributeConverter;
 import java.util.Arrays;
 import java.util.Objects;
+import java.util.Optional;
 
 public class NationalityConverter implements AttributeConverter<Nationality, String> {
 
     @Override
     public String convertToDatabaseColumn(Nationality attribute) {
-        return Objects.isNull(attribute) ? null : attribute.getName();
+        return Optional
+                .ofNullable(attribute)
+                .map(Nationality::getName)
+                .orElse(null);
     }
 
     @Override

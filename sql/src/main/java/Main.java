@@ -2,6 +2,7 @@ import lombok.NonNull;
 import lombok.SneakyThrows;
 import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.math.NumberUtils;
 
 import java.io.File;
 import java.net.URL;
@@ -61,7 +62,7 @@ class Main {
     private static void preparedStatement(Connection connection) {
         /* Prepared statement */
         try (PreparedStatement preparedStatement = connection.prepareStatement(PREPARED_SQL)) {
-            preparedStatement.setInt(INTEGER_ONE, 2);
+            preparedStatement.setInt(INTEGER_ONE, NumberUtils.INTEGER_TWO);
 
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 printInfo(resultSet);
@@ -131,7 +132,7 @@ class Main {
                             PRINT_INFO, resultSet.getMetaData().getColumnName(i), resultSet.getObject(i))
                     );
                 }
-                System.out.println("\n");
+                System.out.println(StringUtils.LF);
             }
         }
     }
