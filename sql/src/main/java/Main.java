@@ -31,10 +31,12 @@ import static org.apache.commons.lang3.math.NumberUtils.INTEGER_ONE;
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 class Main {
 
+    static String SELECT_ALL_FROM_BOOKS = "SELECT * FROM BOOKS";
+
     static String DB_URL = "jdbc:hsqldb:mem:training";
     static String USER = "SA";
     static String PREPARED_SQL = "SELECT BOOKS.TITLE FROM BOOKS WHERE BOOKS.ID = ?";
-    static String PRINT_INFO = "%s : %s";
+    static String PRINT_INFO = "%s : %s %n";
 
     @SneakyThrows
     public static void main(String[] args) {
@@ -55,7 +57,7 @@ class Main {
             statement.executeQuery(initSql);
             statement.executeQuery(insertSql);
 
-            try (ResultSet resultSet = statement.executeQuery("SELECT * FROM BOOKS")) {
+            try (ResultSet resultSet = statement.executeQuery(SELECT_ALL_FROM_BOOKS)) {
                 printInfo(resultSet);
             }
         }
@@ -93,7 +95,7 @@ class Main {
             try {
                 Integer rowsAffected = statement.executeUpdate("UPDATE BOOKS SET BOOKS.STOCK = 500 WHERE BOOKS.ID = 2 OR BOOKS.ID = 1");
 
-                try (ResultSet resultSet = statement.executeQuery("SELECT * FROM BOOKS")) {
+                try (ResultSet resultSet = statement.executeQuery(SELECT_ALL_FROM_BOOKS)) {
                     printInfo(resultSet);
                 }
 
@@ -109,7 +111,7 @@ class Main {
                 e.printStackTrace();
                 connection.rollback();
             } finally {
-                try (ResultSet resultSet = statement.executeQuery("SELECT * FROM BOOKS")) {
+                try (ResultSet resultSet = statement.executeQuery(SELECT_ALL_FROM_BOOKS)) {
                     printInfo(resultSet);
                 }
             }
@@ -131,9 +133,7 @@ class Main {
             int columnsCount = resultSet.getMetaData().getColumnCount();
             while (resultSet.next()) {
                 for (int i = INTEGER_ONE; i <= columnsCount; i++) {
-                    System.out.println(String.format(
-                            PRINT_INFO, resultSet.getMetaData().getColumnName(i), resultSet.getObject(i))
-                    );
+                    System.out.printf(PRINT_INFO, resultSet.getMetaData().getColumnName(i), resultSet.getObject(i));
                 }
                 System.out.println(StringUtils.LF);
             }
