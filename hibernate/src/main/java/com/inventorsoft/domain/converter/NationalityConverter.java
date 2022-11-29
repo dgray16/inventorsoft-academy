@@ -1,7 +1,7 @@
 package com.inventorsoft.domain.converter;
 
 import com.inventorsoft.domain.dictionary.Nationality;
-import javax.persistence.AttributeConverter;
+import jakarta.persistence.AttributeConverter;
 import java.util.Arrays;
 import java.util.Objects;
 import java.util.Optional;
